@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies by {{ director.name }}</title>
+</head>
+<body>
+    <h1>Movies by {{ director.name }}</h1>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            {{ movie.title }} (ID: {{ movie.id }}, Release Date: {{ movie.release_date }})
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('show_directors') }}">Back To Directors</a>
+    <br>
+    <a href="{{ url_for('index') }}">Back To Home</a>
+</body>
+</html>

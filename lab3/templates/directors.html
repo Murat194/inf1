@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Directors</title>
+</head>
+<body>
+    <h1>Directors</h1>
+    <a href="{{ url_for('add_director_route') }}">Add Director</a>
+    <br><br>
+    <ul>
+        {% for director in directors %}
+        <li>
+            {{ director.name }} (ID: {{ director.id }})
+            <a href="{{ url_for('update_director_route', director_id=director.id) }}">Update</a>
+            <form action="{{ url_for('delete_director_route', director_name=director.name) }}" method="POST" style="display:inline;">
+                <input type="submit" value="Delete">
+            </form>
+            <a href="{{ url_for('show_director_movies', director_id=director.id) }}">Movies</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('index') }}">Back To Home</a>
+</body>
+</html>

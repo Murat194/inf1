@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Director</title>
+</head>
+<body>
+    <h1>Add Director</h1>
+    <form method="POST">
+        Name: <input type="text" name="name"><br>
+        Gender: <input type="number" name="gender"><br>
+        UID: <input type="number" name="uid"><br>
+        Department: <input type="text" name="department"><br>
+        <input type="submit" value="Add Director">
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">Back To Home</a>
+</body>
+</html>

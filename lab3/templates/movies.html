@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Movies</title>
+</head>
+<body>
+    <h1>Movies</h1>
+    <a href="{{ url_for('add_movie_route') }}">Add Movie</a>
+    <br><br>
+    <ul>
+        {% for movie in movies %}
+        <li>
+            {{ movie.title }} (ID: {{ movie.id }}, Director ID: {{ movie.director_id }})
+            <a href="{{ url_for('update_movie_route', movie_id=movie.id) }}">Update</a>
+            <form action="{{ url_for('delete_movie_route', movie_title=movie.title) }}" method="POST" style="display:inline;">
+                <input type="submit" value="Delete">
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{ url_for('index') }}">Back To Home</a>
+</body>
+</html>
