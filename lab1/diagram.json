@@ -3,39 +3,32 @@
   "author": "Владислав",
   "editor": "wokwi",
   "parts": [
-    {
-      "type": "wokwi-arduino-uno",
-      "id": "uno",
-      "top": -3,
-      "left": -65.8,
-      "rotate": 90,
-      "attrs": {}
-    },
-    { "type": "wokwi-ili9341", "id": "lcd1", "top": -306.4, "left": 201.3, "attrs": {} },
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 96.6, "left": -58.2, "attrs": {} },
+    { "type": "wokwi-ili9341", "id": "lcd1", "top": -344.8, "left": 172.5, "attrs": {} },
     { "type": "wokwi-pushbutton", "id": "btnUp", "top": -150, "left": -200, "attrs": {} },
     { "type": "wokwi-pushbutton", "id": "btnDown", "top": -50, "left": -200, "attrs": {} },
     { "type": "wokwi-pushbutton", "id": "btnLeft", "top": -100, "left": -250, "attrs": {} },
     { "type": "wokwi-pushbutton", "id": "btnRight", "top": -100, "left": -150, "attrs": {} },
-    { "type": "wokwi-pushbutton", "id": "btnRestart", "top": 73.4, "left": -163.2, "attrs": {} }
+    { "type": "wokwi-pushbutton", "id": "btnRestart", "top": 83, "left": -134.4, "attrs": {} }
   ],
   "connections": [
     [ "btnUp:1.l", "uno:2", "green", [ "v31.4", "h363.2" ] ],
     [ "btnDown:1.l", "uno:3", "green", [ "v85", "h363.2" ] ],
-    [ "btnLeft:1.l", "uno:4", "green", [ "v0" ] ],
+    [ "btnLeft:1.l", "uno:4", "green", [ "v154.2", "h409.3" ] ],
     [ "btnRight:1.l", "uno:5", "green", [ "v39", "h313.2" ] ],
-    [ "btnRestart:1.l", "uno:6", "green", [ "v0" ] ],
-    [ "lcd1:MOSI", "uno:11", "green", [ "v0" ] ],
-    [ "lcd1:SCK", "uno:13", "green", [ "v0" ] ],
-    [ "lcd1:MISO", "uno:12", "green", [ "v0" ] ],
-    [ "lcd1:CS", "uno:10", "green", [ "v0" ] ],
-    [ "lcd1:D/C", "uno:9", "green", [ "v0" ] ],
-    [ "lcd1:VCC", "uno:VIN", "red", [ "v172.8", "h-9.6" ] ],
+    [ "btnRestart:1.l", "uno:6", "green", [ "v-19.2", "h220.8", "v9.6", "h82.7" ] ],
+    [ "lcd1:MOSI", "uno:11", "green", [ "v96", "h-183.01" ] ],
+    [ "lcd1:SCK", "uno:13", "green", [ "v115.2", "h-211.61" ] ],
+    [ "lcd1:MISO", "uno:12", "green", [ "v134.4", "h-221.31" ] ],
+    [ "lcd1:CS", "uno:10", "green", [ "v153.6", "h-144.7" ] ],
+    [ "lcd1:D/C", "uno:9", "green", [ "v86.4", "h-154.4" ] ],
+    [ "lcd1:VCC", "uno:VIN", "red", [ "v364.8", "h-90.5" ] ],
     [ "uno:GND.3", "lcd1:GND", "black", [ "h0" ] ],
-    [ "uno:GND.3", "btnUp:2.r", "black", [ "v0" ] ],
-    [ "uno:GND.3", "btnDown:2.r", "black", [ "v0" ] ],
-    [ "uno:GND.3", "btnLeft:2.r", "black", [ "v0" ] ],
-    [ "uno:GND.3", "btnRight:2.r", "black", [ "v0" ] ],
-    [ "uno:GND.3", "btnRestart:2.r", "black", [ "v-188", "h-213.7" ] ]
+    [ "uno:GND.3", "btnUp:2.r", "black", [ "v28.7", "h-253.8" ] ],
+    [ "uno:GND.3", "btnDown:2.r", "black", [ "v28.7", "h-253.8" ] ],
+    [ "uno:GND.3", "btnLeft:2.r", "black", [ "v28.7", "h-303.8" ] ],
+    [ "uno:GND.3", "btnRight:2.r", "black", [ "v28.7", "h-197.6", "v-384.8" ] ],
+    [ "uno:GND.3", "btnRestart:2.r", "black", [ "v28.7", "h-188.2" ] ]
   ],
   "dependencies": {}
 }
