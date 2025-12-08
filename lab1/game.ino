@@ -31,11 +31,11 @@ const int moveDelay = 150;
 int dx = 1; 
 int dy = 0;
 
-// Исправленные переменные для времени
+
 long gameStartTime = 0;
-long totalTimeBonus = 0; // Общее добавленное время
-const int INITIAL_TIME = 20000; // 10 секунд начального времени
-const int TIME_BONUS = 3000; // +3 секунды за еду
+long totalTimeBonus = 0; 
+const int INITIAL_TIME = 20000; 
+const int TIME_BONUS = 3000; 
 
 void restartGame();
 void placeApple();
@@ -44,9 +44,10 @@ void updateGame();
 void drawBlock(int x, int y, uint16_t color);
 void displayScore();
 void displayTime();
-long getTimeLeft(); // Новая функция для расчета оставшегося времени
+long getTimeLeft(); 
 
 //////
+
 void setup() {
   tft.begin();
   tft.setRotation(0);
@@ -85,13 +86,13 @@ void drawBlock(int x, int y, uint16_t color) {
 }
 
 void restartGame() {
-  len = 5; // Начальный размер змейки 5
+  len = 5;
   dx = 1; 
   dy = 0;
-  score = 0; // Начальный счет 0
+  score = 0;
   isGameOver = false;
   gameStartTime = millis();
-  totalTimeBonus = 0; // Сбрасываем бонусное время
+  totalTimeBonus = 0;
 
   tft.fillScreen(BLACK);
   for (int i = 0; i < len; i++) {
@@ -175,9 +176,8 @@ void updateGame() {
   }
 
   if (sx[0] == ax && sy[0] == ay) {
-    // Еда дает +1 к длине и счету, +3 секунды времени
     score += 1;
-    totalTimeBonus += TIME_BONUS; // Добавляем к общему бонусному времени
+    totalTimeBonus += TIME_BONUS;
     
     if (len < 200) {
       len++;
@@ -206,7 +206,6 @@ void displayScore() {
 void displayTime() {
   long timeLeft = getTimeLeft();
   
-  // Проверяем, не закончилось ли время
   if (timeLeft <= 0) {
   isGameOver = true;
 }
@@ -216,7 +215,7 @@ void displayTime() {
   tft.setTextColor(WHITE, BLACK);
   tft.setTextSize(2);
   tft.print("Time: ");
-  tft.print(timeLeft / 1000); // Показываем секунды
+  tft.print(timeLeft / 1000);
   
   if (isGameOver) {
     tft.fillRect(0, 100, 240, 60, BLACK);
