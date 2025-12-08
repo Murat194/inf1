@@ -28,14 +28,13 @@ bool isGameOver = false;
 long lastMoveTime = 0; 
 const int moveDelay = 150; 
 
-int dx = 1; 
+int dx = 0; 
 int dy = 0;
-
 
 long gameStartTime = 0;
 long totalTimeBonus = 0; 
-const int INITIAL_TIME = 20000; 
-const int TIME_BONUS = 3000; 
+const int INITIAL_TIME = 10000; 
+const int TIME_BONUS = 4000; 
 
 void restartGame();
 void placeApple();
@@ -45,6 +44,7 @@ void drawBlock(int x, int y, uint16_t color);
 void displayScore();
 void displayTime();
 long getTimeLeft(); 
+void drawBorders();
 
 //////
 
@@ -85,6 +85,17 @@ void drawBlock(int x, int y, uint16_t color) {
   tft.fillRect(x * B, y * B, B, B, color);
 }
 
+void drawBorders() { 
+  tft.drawFastHLine(0, 22, 240, WHITE);
+  tft.drawRect(0, 20, 240, 300, WHITE);
+}
+
+void gameOver() {
+  tft.setCursor(15, 120); 
+  tft.setTextSize(3);
+  tft.println("GAME OVER");
+}
+
 void restartGame() {
   len = 5;
   dx = 1; 
@@ -95,6 +106,8 @@ void restartGame() {
   totalTimeBonus = 0;
 
   tft.fillScreen(BLACK);
+  drawBorders();
+  
   for (int i = 0; i < len; i++) {
     sx[i] = W / 2 - i;
     sy[i] = H / 2;
@@ -107,7 +120,7 @@ void placeApple() {
   do {
     onSnake = false;
     ax = random(W);
-    ay = random(H);
+    ay = random(2, H);
     for (int i = 0; i < len; i++) {
       if (sx[i] == ax && sy[i] == ay) {
         onSnake = true;
@@ -166,11 +179,13 @@ void updateGame() {
 
   if (sx[0] < 0 || sx[0] >= W || sy[0] < 0 || sy[0] >= H) {
     isGameOver = true;
+    gameOver();
     return;
   }
   for (int i = 1; i < len; i++) {
     if (sx[0] == sx[i] && sy[0] == sy[i]) {
       isGameOver = true;
+      gameOver();
       return;
     }
   }
@@ -188,6 +203,12 @@ void updateGame() {
   } else {
     drawBlock(tail_x, tail_y, BLACK);
   }
+
+  long timeLeft = getTimeLeft();
+  if (timeLeft <= 0) {
+  isGameOver = true;
+  gameOver();
+}
   
   drawBlock(sx[0], sy[0], GREEN);
   displayScore();
@@ -203,29 +224,11 @@ void displayScore() {
   tft.print(score);
 }
 
-void displayTime() {
-  long timeLeft = getTimeLeft();
-  
-  if (timeLeft <= 0) {
-  isGameOver = true;
-}
-  
+void displayTime() {  
   tft.fillRect(130, 0, 110, 20, BLACK); 
   tft.setCursor(135, 5);
   tft.setTextColor(WHITE, BLACK);
   tft.setTextSize(2);
   tft.print("Time: ");
-  tft.print(timeLeft / 1000);
-  
-  if (isGameOver) {
-    tft.fillRect(0, 100, 240, 60, BLACK);
-    tft.setCursor(15, 120); 
-    tft.setTextColor(RED, BLACK);
-    tft.setTextSize(3);
-    if (timeLeft <= 0) {
-      tft.println("TIME OVER!");
-    } else {
-      tft.println("GAME OVER");
-    }
-  }
+  tft.print(getTimeLeft() / 1000);
 }
